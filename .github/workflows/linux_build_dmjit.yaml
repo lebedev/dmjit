@@ -70,6 +70,10 @@ jobs:
         env:
           BYOND_PATH: /__w/dmjit/dmjit/byond
       - uses: actions/upload-artifact@v3
+        with:
+          name: libdmjit.so
+          path: dmjit/target/release/libdmjit.so
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: dmjit-test-output
