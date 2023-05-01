@@ -9,7 +9,7 @@ use libc::{c_void, free};
 byond_imports!(
     var GLOB_LIST_ARRAY: *mut *mut List
         = find_by_reference!(
-            unix    => "8b 15 >?? ?? ?? ?? 8b 14 82 85 d2 74 a7 83 42 10 01 8b 83 f4 00 00 00",
+            unix    => "8b 15 >?? ?? ?? ?? 8b 14 82 85 d2 0f 84 32 ff ff ff 83 42 ?? ?? 8b 83 ?? ?? ?? ?? e9 dc f5 ff ff",
             windows => "8b 35 >?? ?? ?? ?? 8b 45 10 90 80 f9 06 0f 84 04 03 00 00 80"
         );
     fn UNSET_ASSOC_LIST_PTR: extern "cdecl" fn(*mut *mut AssociativeListEntry, Value)

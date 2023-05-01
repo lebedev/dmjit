@@ -3,14 +3,14 @@ on:
   workflow_call:
     inputs:
       byondVersion:
-        description: 'Byond major version, like 514 in 514.1543 version'
+        description: 'Byond major version, like 514 in 514.1575 version'
         required: true
         default: '514'
         type: string
       byondBuild:
-        description: 'Byond build version, like 1543 in 514.1543 version'
+        description: 'Byond build version, like 1543 in 514.1575 version'
         required: true
-        default: '1569'
+        default: '1575'
         type: string
 
 jobs:

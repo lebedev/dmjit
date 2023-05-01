@@ -20,4 +20,4 @@ jobs:
     uses: ./.github/workflows/linux_build_dmjit.yaml
     with:
       byondVersion: '514'
-      byondBuild: '1569'
+      byondBuild: '1575'

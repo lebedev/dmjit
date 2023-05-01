@@ -10,7 +10,7 @@ on:
       byondBuild:
         description: 'Byond build version, like 1543 in 514.1543 version'     
         required: true
-        default: '1569'
+        default: '1575'
   
 jobs:
   call_build_and_test_action:
