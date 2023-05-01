@@ -81,31 +81,29 @@ pub(crate) static SCANNER: Lazy<ForceSyncSend<Scanner>> = Lazy::new(|| {
 });
 
 pub fn find_by_call(scanner: &Scanner, signature: ExSignature) -> *mut u8 {
-    let positions = scanner.find_all(signature.data);
-    let marker_pos = signature.marker_pos;
-    let result = positions.iter()
-        .map(|pointer| unsafe {
-            pointer.add(marker_pos as usize).offset(4).offset(*(pointer.add(marker_pos as usize) as *const isize))
-        })
-        .dedup()
-        .collect::<Vec<_>>();
-    if result.len() == 1 {
-        return result.into_iter().next().unwrap();
+    let position = scanner.find(signature.data);
+    if position == None {
+        panic!("Failed to perform signature search: no matches");
     }
-    panic!("Failed to perform signature search: found matches at {:#?}", positions);
+
+    let pointer = position.unwrap();
+    let marker_pos = signature.marker_pos;
+
+    return unsafe {
+        pointer.add(marker_pos as usize).offset(4).offset(*(pointer.add(marker_pos as usize) as *const isize))
+    }
 }
 
 pub fn find_by_reference(scanner: &Scanner, signature: ExSignature) -> *mut u8 {
-    let positions = scanner.find_all(signature.data);
-    let marker_pos = signature.marker_pos;
-    let result = positions.iter()
-        .map(|pointer| unsafe {
-            *(pointer.add(marker_pos as usize) as *const *mut u8)
-        })
-        .dedup()
-        .collect::<Vec<_>>();
-    if result.len() == 1 {
-        return result.into_iter().next().unwrap();
+    let position = scanner.find(signature.data);
+    if position == None {
+        panic!("Failed to perform signature search: no matches");
     }
-    panic!("Failed to perform signature search: found matches at {:#?}", positions);
+
+    let pointer = position.unwrap();
+    let marker_pos = signature.marker_pos;
+
+    return unsafe {
+        *(pointer.add(marker_pos as usize) as *const *mut u8)
+    }
 }
