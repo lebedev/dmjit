@@ -3,14 +3,14 @@ on:
   workflow_call:
     inputs:
       byondVersion:
-        description: 'Byond major version, like 514 in 514.1575 version'
+        description: 'Byond major version, like 514 in 514.1589 version'
         required: true
         default: '514'
         type: string
       byondBuild:
-        description: 'Byond build version, like 1543 in 514.1575 version'
+        description: 'Byond build version, like 1543 in 514.1589 version'
         required: true
-        default: '1575'
+        default: '1589'
         type: string
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout auxtools repository
         uses: actions/checkout@v3
         with:
-          repository: ss220-space/auxtools
+          repository: ${{ github.REPOSITORY_OWNER }}/auxtools
           ref: dm-jitaux
           path: auxtools
       - name: Checkout current repository

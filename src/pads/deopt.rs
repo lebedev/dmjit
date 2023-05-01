@@ -581,7 +581,7 @@ pub fn initialize_deopt() {
         }
 
         if cfg!(unix) {
-            let res = scanner.find(signature!("55 89 e5 57 56 53 81 ec 1c 08 00 00"));
+            let res = scanner.find(signature!("55 89 e5 57 56 53 81 ec 0c 08 00 00"));
 
             if let Some(ptr) = res {
                 do_call_byond = ptr as *const std::ffi::c_void;
