@@ -30,7 +30,6 @@
     dmjit_bench_iterate("gas_mixture", "/proc/gas_share_byond", cell_1, cell_2)
 
     dmjit_bench_finish()
-    RES("")
 
 
 /proc/total_moles_jit(var/datum/gas_mixture/cell)
