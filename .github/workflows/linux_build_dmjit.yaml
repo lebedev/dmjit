@@ -61,7 +61,7 @@ jobs:
       - name: Set override
         run: rustup override set nightly-2021-11-05-i686-unknown-linux-gnu
         working-directory: ./dmjit
-      - name: Run build
+      - name: Run test build
         run: |
           cargo build --release
           strip target/release/libdmjit.so
@@ -76,10 +76,15 @@ jobs:
         working-directory: ./dmjit
         env:
           BYOND_PATH: /__w/dmjit/dmjit/byond
+      - name: Run dist build
+        run: |
+          cargo build ---profile=release-dist --no-default-features
+          strip target/release-dist/libdmjit.so
+        working-directory: ./dmjit
       - uses: actions/upload-artifact@v3
         with:
           name: libdmjit.so
-          path: dmjit/target/release/libdmjit.so
+          path: dmjit/target/release-dist/libdmjit.so
       - uses: actions/upload-artifact@v3
         if: always()
         with:
