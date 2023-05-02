@@ -62,7 +62,9 @@ jobs:
         run: rustup override set nightly-2021-11-05-i686-unknown-linux-gnu
         working-directory: ./dmjit
       - name: Run build
-        run: cargo build --release
+        run: |
+          cargo build --release
+          strip target/release/libdmjit.so
         working-directory: ./dmjit
       - name: Run tests
         run: cargo test --release
