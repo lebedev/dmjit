@@ -71,6 +71,11 @@ jobs:
         working-directory: ./dmjit
         env:
           BYOND_PATH: /__w/dmjit/dmjit/byond
+      - name: Run benchmarks
+        run: cargo bench
+        working-directory: ./dmjit
+        env:
+          BYOND_PATH: /__w/dmjit/dmjit/byond
       - uses: actions/upload-artifact@v3
         with:
           name: libdmjit.so
